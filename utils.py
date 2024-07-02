@@ -85,8 +85,8 @@ def extract_denomination(image):
 
 def detect_signature(image, template_paths):
     # Load the main image
-    main_image = image
-    main_gray = cv2.cvtColor(main_image, cv2.COLOR_BGR2GRAY)
+    # main_image = image
+    main_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # Initialize SIFT detector
     sift = cv2.SIFT_create()
@@ -108,6 +108,14 @@ def detect_signature(image, template_paths):
         # Match descriptors between main image and template
         matcher = cv2.BFMatcher()
         matches = matcher.knnMatch(descriptors_template, descriptors_main, k=2)
+       
+        # FLANN parameters
+        # FLANN_INDEX_KDTREE = 1
+        # index_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 5)
+        # search_params = dict(checks = 50)
+
+        # flann = cv2.FlannBasedMatcher(index_params, search_params)
+        # matches = flann.knnMatch(descriptors_main, descriptors_template, k=2)
 
         # Apply ratio test to find good matches
         good_matches = []
@@ -116,7 +124,7 @@ def detect_signature(image, template_paths):
                 good_matches.append(m)
 
         # If enough good matches are found, consider it a match
-        if len(good_matches) > 10:  # Adjust this threshold as needed
+        if len(good_matches) > 5:  # Adjust this threshold as needed
             # Get the keypoints of the matches
             src_pts = np.float32([keypoints_template[m.queryIdx].pt for m in good_matches]).reshape(-1, 1, 2)
             dst_pts = np.float32([keypoints_main[m.trainIdx].pt for m in good_matches]).reshape(-1, 1, 2)
