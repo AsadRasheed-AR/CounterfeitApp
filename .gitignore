@@ -3,3 +3,5 @@ Templates
 __pycache__
 EASYOCR
 ASSETS
+main.py
+*.ps1
