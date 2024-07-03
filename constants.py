@@ -22,46 +22,8 @@ SIGNATURE_DICT = {
 }
 
 # Response Validations
-PASS = {
-    "RESP_TOP_SERIAL" : {
-        "title": "Serial Top",
-        "desc" : "The unique serial number printed at the top of the banknote, used for identification and authentication.",
-        "status": True,
-        "value": None
-    },
-
-    "RESP_BOTTOM_SERIAL": {
-        "title": "Serial Bottom",
-        "desc" : "The unique serial number printed at the bottom of the banknote, ensuring additional security and verification.",
-        "status": True,
-        "value": None
-    },
-
-    "RESP_PRINT_YEAR": {
-        "title": "Note Printing Year",
-        "desc" : "The year when the banknote was printed, providing information about the note's age and validity.",
-        "status": True,
-        "value": None
-    },
-
-    "RESP_DENOMINATION": {
-        "title": "Denomination",
-        "desc" : "The face value of the banknote, indicating its monetary value.",
-        "status": True,
-        "value": None
-    },
-
-    "RESP_GOVERNOR": {
-        "title": "Governor SBP",
-        "desc" : "The signature of the Governor of the State Bank of Pakistan, verifying the authenticity of the banknote.",
-        "status": True,
-        "value": None
-    }
-}
-
-
-FAIL = {
-    "RESP_TOP_SERIAL" : {
+ValidationResponse = {
+        "RESP_TOP_SERIAL" : {
         "title": "Serial Top",
         "desc" : "The unique serial number printed at the top of the banknote, used for identification and authentication.",
         "status": False,
@@ -96,3 +58,79 @@ FAIL = {
         "value": None
     }
 }
+
+# # Response Validations
+# PASS = {
+#     "RESP_TOP_SERIAL" : {
+#         "title": "Serial Top",
+#         "desc" : "The unique serial number printed at the top of the banknote, used for identification and authentication.",
+#         "status": True,
+#         "value": None
+#     },
+
+#     "RESP_BOTTOM_SERIAL": {
+#         "title": "Serial Bottom",
+#         "desc" : "The unique serial number printed at the bottom of the banknote, ensuring additional security and verification.",
+#         "status": True,
+#         "value": None
+#     },
+
+#     "RESP_PRINT_YEAR": {
+#         "title": "Note Printing Year",
+#         "desc" : "The year when the banknote was printed, providing information about the note's age and validity.",
+#         "status": True,
+#         "value": None
+#     },
+
+#     "RESP_DENOMINATION": {
+#         "title": "Denomination",
+#         "desc" : "The face value of the banknote, indicating its monetary value.",
+#         "status": True,
+#         "value": None
+#     },
+
+#     "RESP_GOVERNOR": {
+#         "title": "Governor SBP",
+#         "desc" : "The signature of the Governor of the State Bank of Pakistan, verifying the authenticity of the banknote.",
+#         "status": True,
+#         "value": None
+#     }
+# }
+
+
+# FAIL = {
+#     "RESP_TOP_SERIAL" : {
+#         "title": "Serial Top",
+#         "desc" : "The unique serial number printed at the top of the banknote, used for identification and authentication.",
+#         "status": False,
+#         "value": None
+#     },
+
+#     "RESP_BOTTOM_SERIAL": {
+#         "title": "Serial Bottom",
+#         "desc" : "The unique serial number printed at the bottom of the banknote, ensuring additional security and verification.",
+#         "status": False,
+#         "value": None
+#     },
+
+#     "RESP_PRINT_YEAR": {
+#         "title": "Note Printing Year",
+#         "desc" : "The year when the banknote was printed, providing information about the note's age and validity.",
+#         "status": False,
+#         "value": None
+#     },
+
+#     "RESP_DENOMINATION": {
+#         "title": "Denomination",
+#         "desc" : "The face value of the banknote, indicating its monetary value.",
+#         "status": False,
+#         "value": None
+#     },
+
+#     "RESP_GOVERNOR": {
+#         "title": "Governor SBP",
+#         "desc" : "The signature of the Governor of the State Bank of Pakistan, verifying the authenticity of the banknote.",
+#         "status": False,
+#         "value": None
+#     }
+# }
