@@ -1,42 +1,48 @@
-from constants import PASS,FAIL
+# from constants import ValidationResponse
+from constants import ValidationResponse
 
 def SerialTop_Validation(SerialNum):
+    ResponseTopSerial = ValidationResponse['RESP_TOP_SERIAL']
     if SerialNum != None:
-        ResponseTopSerial = PASS['RESP_TOP_SERIAL']
         ResponseTopSerial['value'] = SerialNum
+        ResponseTopSerial['status'] = True
         return ResponseTopSerial
     else:
-        return FAIL['RESP_TOP_SERIAL']
+        return ValidationResponse['RESP_TOP_SERIAL']
 
 def SerialBottom_Validation(SerialNum):
+    ResponseBottomSerial = ValidationResponse['RESP_BOTTOM_SERIAL']
     if SerialNum != None:
-        ResponseBottomSerial = PASS['RESP_BOTTOM_SERIAL']
         ResponseBottomSerial['value'] = SerialNum
+        ResponseBottomSerial['status'] = True
         return ResponseBottomSerial
     else:
-        return FAIL['RESP_BOTTOM_SERIAL']
+        return ValidationResponse['RESP_BOTTOM_SERIAL']
 
 def PrintYear_Validation(PrintYear):
+    ResponsePrintYear = ValidationResponse['RESP_PRINT_YEAR']
     if PrintYear != None:
-        ResponsePrintYear = PASS['RESP_PRINT_YEAR']
         ResponsePrintYear['value'] = PrintYear
+        ResponsePrintYear['status'] = True
         return ResponsePrintYear
     else:
-        return FAIL['RESP_PRINT_YEAR']
+        return ValidationResponse['RESP_PRINT_YEAR']
 
 def Denomination_Validation(Denomination):
+    ResponseDenomination = ValidationResponse['RESP_DENOMINATION']
     if Denomination != None:
-        ResponseDenomination = PASS['RESP_DENOMINATION']
         ResponseDenomination['value'] = Denomination
+        ResponseDenomination['status'] = True
         return ResponseDenomination
     else:
-        return FAIL['RESP_DENOMINATION']
+        return ValidationResponse['RESP_DENOMINATION']
 
 def Governor_Validation(Governor):
+    ResponseGovernor = ValidationResponse['RESP_GOVERNOR']
     if Governor != None and Governor != 'No signatures found.':
-        ResponseGovernor = PASS['RESP_GOVERNOR']
         ResponseGovernor['value'] = Governor
+        ResponseGovernor['status'] = True
         return ResponseGovernor
     else:
-        return FAIL['RESP_GOVERNOR']
+        return ValidationResponse['RESP_GOVERNOR']
 
