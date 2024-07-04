@@ -5,3 +5,4 @@ EASYOCR
 ASSETS
 main.py
 *.ps1
+.env
