@@ -1,48 +1,63 @@
 # from constants import ValidationResponse
 from constants import ValidationResponse
 
-def SerialTop_Validation(SerialNum):
+def SerialTop_Validation(SerialNum, CMSerialNum):
     ResponseTopSerial = ValidationResponse['RESP_TOP_SERIAL']
-    if SerialNum != None:
-        ResponseTopSerial['value'] = SerialNum
+    ResponseTopSerial['value'] = SerialNum
+    ResponseTopSerial['status'] = False
+
+
+    if SerialNum == CMSerialNum:
         ResponseTopSerial['status'] = True
         return ResponseTopSerial
     else:
-        return ValidationResponse['RESP_TOP_SERIAL']
+        return ResponseTopSerial
 
-def SerialBottom_Validation(SerialNum):
+def SerialBottom_Validation(SerialNum, CMSerialNum):
     ResponseBottomSerial = ValidationResponse['RESP_BOTTOM_SERIAL']
-    if SerialNum != None:
-        ResponseBottomSerial['value'] = SerialNum
+    ResponseBottomSerial['value'] = SerialNum
+    ResponseBottomSerial['status'] = False
+
+
+    if SerialNum == CMSerialNum:
         ResponseBottomSerial['status'] = True
         return ResponseBottomSerial
     else:
-        return ValidationResponse['RESP_BOTTOM_SERIAL']
+        return ResponseBottomSerial
 
-def PrintYear_Validation(PrintYear):
+def PrintYear_Validation(PrintYear, CMPrintYear):
     ResponsePrintYear = ValidationResponse['RESP_PRINT_YEAR']
-    if PrintYear != None:
-        ResponsePrintYear['value'] = PrintYear
+    ResponsePrintYear['value'] = PrintYear
+    ResponsePrintYear['status'] = False
+
+
+    if PrintYear == CMPrintYear:
         ResponsePrintYear['status'] = True
         return ResponsePrintYear
     else:
-        return ValidationResponse['RESP_PRINT_YEAR']
+        return ResponsePrintYear
 
-def Denomination_Validation(Denomination):
+def Denomination_Validation(Denomination, CMDenomination):
     ResponseDenomination = ValidationResponse['RESP_DENOMINATION']
-    if Denomination != None:
-        ResponseDenomination['value'] = Denomination
+    ResponseDenomination['value'] = Denomination
+    ResponseDenomination['status'] = False
+
+
+    if Denomination == CMDenomination:
         ResponseDenomination['status'] = True
         return ResponseDenomination
     else:
-        return ValidationResponse['RESP_DENOMINATION']
+        return ResponseDenomination
 
-def Governor_Validation(Governor):
+def Governor_Validation(Governor,CMGovernor):
     ResponseGovernor = ValidationResponse['RESP_GOVERNOR']
-    if Governor != None and Governor != 'No signatures found.':
-        ResponseGovernor['value'] = Governor
+    ResponseGovernor['value'] = Governor
+    ResponseGovernor['status'] = False
+
+
+    if Governor == CMGovernor:
         ResponseGovernor['status'] = True
         return ResponseGovernor
     else:
-        return ValidationResponse['RESP_GOVERNOR']
+        return ResponseGovernor
 

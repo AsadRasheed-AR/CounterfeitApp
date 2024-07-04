@@ -6,12 +6,13 @@ from constants import NUM_PATCHES, SINGNATURE_TEMPLATES, SIGNATURE_DICT
 from utils import split_and_plot_image, extract_serial, extract_print_year, extract_denomination, extract_signature
 # from constants import PASS,FAIL
 from validations import SerialTop_Validation, SerialBottom_Validation, Denomination_Validation, PrintYear_Validation, Governor_Validation
+from CMValidations import fetchCurrencyRecord
 
 app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return "<p>Conterfeit Test API.</p>"
 
 # Test Route
 @app.route("/test")
@@ -52,18 +53,29 @@ def verify():
         #         [PASS['RESP_DENOMINATION'] if denomination != None else FAIL['RESP_DENOMINATION']],
         #         [PASS['RESP_GOVERNOR'] if (Governor_name != None and Governor_name != 'No signatures found.') else FAIL['RESP_GOVERNOR']],
         #     ]
-        count = 0
-        Features = [
-                SerialTop_Validation(Serial_top.upper()),
-                SerialBottom_Validation(Serial_Bottom.upper()),
-                PrintYear_Validation(print_year),
-                Denomination_Validation(denomination),
-                Governor_Validation(Governor_name)
-            ]
+        record = fetchCurrencyRecord(Serial_top.upper())
+
+        if record is None:
+            Features = [
+                    SerialTop_Validation(Serial_top.upper(), ''),
+                    SerialBottom_Validation(Serial_Bottom.upper(), ''),
+                    PrintYear_Validation(print_year, ''),
+                    Denomination_Validation(denomination, ''),
+                    Governor_Validation(Governor_name.upper(), '')
+                ]
+        else:
+            count = 0
+            Features = [
+                    SerialTop_Validation(Serial_top.upper(), record[1].strip()),
+                    SerialBottom_Validation(Serial_Bottom.upper(), record[2].strip()),
+                    PrintYear_Validation(print_year, record[3].strip()),
+                    Denomination_Validation(denomination, record[4].strip()),
+                    Governor_Validation(Governor_name.upper(), record[5].strip())
+                ]
         return {
             "Features": Features,
             "Score_Total" : len(Features),
-            "Score": sum(1 for feature in Features if feature['value'] is not None)
+            "Score": sum(1 for feature in Features if feature['status'] is not False)
         }
         # return {
         #     "Top Serial" : Serial_top.upper(),
