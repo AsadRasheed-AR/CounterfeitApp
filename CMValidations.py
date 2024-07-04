@@ -3,6 +3,8 @@ import cx_Oracle
 import oracledb
 import os
 
+from DataModel import CMDummyData
+
 # Parse and load the enviornment variables.
 load_dotenv(override=True)
 
@@ -34,21 +36,24 @@ def connectToDB():
 def fetchCurrencyRecord(SerialTop):
     global DB_CONNECT
 
-    if DB_CONNECT is None:
-        DB_CONNECT = connectToDB()
-        print("Successfully connected to Oracle Database")
+    if ENVIORNMENT == 'DEV':
+        pass
+    else:
+        if DB_CONNECT is None:
+            DB_CONNECT = connectToDB()
+            print("Successfully connected to Oracle Database")
 
-    with DB_CONNECT.cursor() as cursor:
-        try:
-            # Execute the query            
-            sql = f"SELECT * FROM CM WHERE tserial = '{SerialTop}'"
-            record = cursor.execute(sql).fetchone()
-            print(record)
-            return record
+        with DB_CONNECT.cursor() as cursor:
+            try:
+                # Execute the query            
+                sql = f"SELECT * FROM CM WHERE tserial = '{SerialTop}'"
+                record = cursor.execute(sql).fetchone()
+                print(record)
+                return record
 
-        except oracledb.Error as e:
-            error, = e.args
-            print(sql)
-            print('*'.rjust(error.offset+1, ' '))
-            print(error.message)
-            return error.message
+            except oracledb.Error as e:
+                error, = e.args
+                print(sql)
+                print('*'.rjust(error.offset+1, ' '))
+                print(error.message)
+                return error.message
